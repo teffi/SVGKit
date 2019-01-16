@@ -35,8 +35,7 @@
  
  */
 
-#import <UIKit/UIKit.h>
-
+#import "SVGKDefine.h"
 #import "SVGKParser.h" // needed for asynchronous loading method-signature
 
 @class SVGDocument;
@@ -102,6 +101,7 @@ typedef void (^SVGKImageLoadContentsDelegate)(BOOL state, SVGKImage* loadedImage
 +(SVGKParser *) imageAsynchronouslyNamed:(NSString *)name onCompletion:(SVGKImageAsynchronousLoadingDelegate) blockCompleted;
 + (SVGKImage *)imageWithContentsOfFile:(NSString *)path;
 + (void) imageWithContentsOfFile:(NSString *)aPath completion:(SVGKImageLoadContentsDelegate)completion;
++ (SVGKImage *)imageWithContentsOfURL:(NSURL *)url;
 + (SVGKParser*) imageParserWithContentsOfFileAsynchronously:(NSString *)aPath onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
 + (SVGKImage*) imageWithContentsOfFileAsynchronously:(NSString *)aPath onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
 
@@ -217,7 +217,7 @@ typedef void (^SVGKImageLoadContentsDelegate)(BOOL state, SVGKImage* loadedImage
 - (void)drawAsPatternInRect:(CGRect)rect; // draws the image as a CGPattern
 
 // animated images. When set as UIImageView.image, animation will play in an infinite loop until removed. Drawing will render the first image
-#if TARGET_OS_IPHONE
+#if SVGKIT_UIKIT
 + (UIImage *)animatedImageNamed:(NSString *)name duration:(NSTimeInterval)duration ;//__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_5_0); read sequnce of files with suffix starting at 0 or 1
 + (UIImage *)animatedResizableImageNamed:(NSString *)name capInsets:(UIEdgeInsets)capInsets duration:(NSTimeInterval)duration ;//__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_5_0); // squence of files
 + (UIImage *)animatedImageWithImages:(NSArray *)images duration:(NSTimeInterval)duration ;//__OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_5_0);

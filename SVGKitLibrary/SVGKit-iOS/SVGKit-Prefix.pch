@@ -1,0 +1,31 @@
+//
+// Prefix header for all source files of the 'SVGKit-iOS' target in the 'SVGKit-iOS' project
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+//#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "SVGKDefine.h"
+
+// These macro is only used inside framework project, does not expose to public header and effect user's define
+
+#define SVGKIT_LOG_CONTEXT 556
+
+#define SVGKitLogError(frmt, ...)   ("error",   SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define SVGKitLogWarn(frmt, ...)    ("warning", SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define SVGKitLogInfo(frmt, ...)    ( "info",    SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define SVGKitLogDebug(frmt, ...)   ("debug",   SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define SVGKitLogVerbose(frmt, ...) ("verbose", SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+
+#if DEBUG
+//static const int ddLogLevel = DDLogLevelVerbose;
+#else
+//static const int ddLogLevel = DDLogLevelWarning;
+#endif
+
+#if SVGKIT_MAC
+#define NSStringFromCGRect(rect) NSStringFromRect(rect)
+#define NSStringFromCGSize(size) NSStringFromSize(size)
+#define NSStringFromCGPoint(point) NSStringFromPoint(point)
+#endif
+#endif
